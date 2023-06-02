@@ -39,14 +39,23 @@ class User extends Authenticatable
 
     public function image()
     {
-        return $this->morphOne(Image::class,'imagetable');
+        return $this->morphOne(Image::class, 'imagetable');
     }
 
     public function sendPasswordResetNotification($token)
     {
-
         $url = 'https://spa.test/Resetpassword?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

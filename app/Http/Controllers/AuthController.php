@@ -14,18 +14,23 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
-        // $email = str_replace('@', '', $request->email);
+        
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        $path = $request->file('file')->store($request->email, 'public');
-        $user->image()->create([
-            'user_id' => $user->id,
-            'image' => $path,
-        ]);
+
+        if ($request->file == null) {
+        } else {
+            $path = $request->file('file')->store($request->email, 'public');
+
+            $user->image()->create([
+                'user_id' => $user->id,
+                'image' => $path,
+            ]);
+        }
 
         $token = $user->createToken('token-name')->plainTextToken;
         $respones = [
@@ -48,7 +53,7 @@ class AuthController extends Controller
                 401,
             );
         } else {
-            return 'asd';
+            return $user->createToken('token-name')->plainTextToken;
         }
     }
 
