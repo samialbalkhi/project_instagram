@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 
@@ -8,7 +9,7 @@ class ProfileController extends Controller
 {
     public function infouser()
     {
-        return Profile::findOrFail(auth()->user()->id);
+        return Profile::findOrFail(auth()->user()->profile->id);
     }
     public function create(Request $request)
     {
@@ -20,5 +21,17 @@ class ProfileController extends Controller
         ]);
 
         return $profile->user;
+    }
+    public function update(Request $request)
+    {
+        
+        $profile=[
+            'title' => $request->title,
+            'description' => $request->description,
+            'url' => $request->url,
+        ];
+        auth()->user()->profile->update($profile);
+
+        return 'updateed successfully';
     }
 }

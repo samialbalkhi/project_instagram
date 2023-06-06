@@ -11,6 +11,7 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable = ['caption', 'user_id'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function user()
     {

@@ -25,12 +25,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('ShowUser',[UserController::class, 'showuser']);
     ////////    profile users      /////////////
     Route::prefix('profile')->group(function () {
-    Route::get('InformationUser',[ProfileController::class, 'infouser']);    
-    Route::post('create',[ProfileController::class,'create']);
+    Route::get('/InformationUser',[ProfileController::class,'infouser']);    
+    Route::post('/create',[ProfileController::class,'create']);
+    Route::post('/update',[ProfileController::class,'update']);
 });
 
 Route::prefix('posts')->group(function () {
         Route::post('create',[PostController::class,'create']);
+        Route::delete('delete/{id}',[PostController::class,'delete']);
+
+
 });
 });
 ////////////       AuthController         //////////////
