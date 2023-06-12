@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         return response($respones, 201);
     }
-
+    
     public function login(LoginRequset $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -46,7 +46,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response(
                 [
-                    'message' => 'bad password',
+                    'message' => 'password or email is incorrect',
                 ],
                 401,
             );
@@ -62,8 +62,8 @@ class AuthController extends Controller
             ->tokens()
             ->delete();
 
-        return [
+            return response()->json([
             'message' => 'logout',
-        ];
+            ]);
     }
 }

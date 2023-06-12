@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Like extends Model
 {
     use HasFactory;
-    protected $fillable=['image','user_id'];
+    protected $fillable = ['post_id', 'user_id'];
     protected $hidden = ['created_at', 'updated_at'];
-
-    public function imagetable()
-    {
-        return $this->morphTo();
-    }  
 }

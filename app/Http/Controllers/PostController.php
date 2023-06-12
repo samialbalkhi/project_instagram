@@ -27,13 +27,14 @@ class PostController extends Controller
                     'user_id' => 2,
                 ]);
             }
-            return 'added successfully';
+            return response()->json(['message' => 'deleted successfully']);
+
         }
     }
     public function delete($id)
     {
         Post::destroy($id);
 
-        return 'deletes successfully';
+        return response()->json(['message' => 'deleted successfully']);
     }
 }

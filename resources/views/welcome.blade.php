@@ -16,7 +16,8 @@
         </style>
     </head>
     <body class="antialiased">
-        <form action="{{route('uploud')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('uploud')}}" method="POST" enctype="multipart/form-data">\
+            @method('delete')
             <input type="file" name="image[]"  multiple>
             @csrf
             <label for="fname">First name:</label><br>

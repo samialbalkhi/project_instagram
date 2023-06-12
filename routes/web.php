@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-// Route::post('/uploud',[PostController::class,'create'])->name('uploud');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[PostLikeController::class,'create'])->name('uploud');
+Route::delete('delete/{post}',[PostLikeController::class,'delete']);
+

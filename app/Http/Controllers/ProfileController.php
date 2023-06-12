@@ -32,6 +32,6 @@ class ProfileController extends Controller
         ];
         auth()->user()->profile->update($profile);
 
-        return 'updateed successfully';
+        return response()->json(['message'=>'updateed successfully']);
     }
 }
